@@ -169,7 +169,10 @@ def getDataFor(parentDir, parentWidgetId):
     warningLog.append("Can't access the folder at " + parentDir + '/' + name + \
 		'. Assume path exists with 0 byte size on disk.')
    else:
-    warningLog.append('(Errno: ' + excep.errno + ') - ' + str(excep))
+    try:
+     warningLog.append('(Errno: ' + excep.errno + ') - ' + str(excep))
+    except: #if exception doesn't have the attribute errno
+     warningLog.append(str(excep))
    
  for name in likelyFiles:
   try:
